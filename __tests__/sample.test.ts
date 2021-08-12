@@ -25,4 +25,12 @@ describe('calculator', () => {
         expect(c.calc("2 / 3")).toEqual(2/3)
         expect(c.calc("2 / 0")).toEqual(undefined)
     })
+
+    test("it can calculate the power of a base", () => {
+        const c = new Calculator();
+        expect(c.calc("2 ^ 2")).toEqual(4)
+        // expect(c.calc("2 ^ 3")).toEqual(8)
+        // expect(c.calc("2 ^ 0")).toEqual(1)
+    })
+
 })
