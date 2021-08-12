@@ -4,7 +4,9 @@
   "description": "",
   "main": "main.ts",
   "scripts": {
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "build": "tsc --watch",
+    "dev": "nodemon jest"
   },
   "author": "",
   "license": "ISC",
