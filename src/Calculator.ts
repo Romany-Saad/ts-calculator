@@ -1,9 +1,11 @@
 export default class Calculator {
 
-    private delimiters = ['+', '-', '*', '/', '^'];
+    private unsafeDelimiters = ['+', '-', '*', '/', '^'];
+    private safeDelimiters = ['rt'];
 
     public calc(s: string) {
-        const pattern = "^([\\d\\s]+)([\\" + this.delimiters.join("\\") + "])([\\s\\d]+)$";
+        let delimiters = `[\\${this.unsafeDelimiters.join("\\")}]|${this.safeDelimiters.join('|')}`
+        const pattern = `^([\\d\\s]+)(${delimiters})([\\s\\d]+)$`;
 
         const regex = new RegExp(pattern, "i");
         const parts = s.match(regex);
@@ -18,6 +20,9 @@ export default class Calculator {
             }
             if (operator === "^") {
                 return Math.pow(Number(parts[1]), Number(parts[3]))
+            }
+            if (operator === "rt") {
+                return Math.pow(Number(parts[1]), 1/Number(parts[3]))
             }
             return eval(s);
 
